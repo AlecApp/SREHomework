@@ -34,4 +34,18 @@ This repo contains the modified todo-api Dockerfile, the modified docker-compose
 * Decided to use modules to be more professional. Found a lot on GitHub: https://github.com/terraform-aws-modules
 * Mistakenly cloned a module repo to local system, thinking I needed the source. Quickly learned that wasn't how it worked.
 * Took ten minutes to research modules on Terraform's site, gaining familiarity.
+* Planned out the infrastructure based on 3-tier design.
 * Successfully imported vpc module into a fresh config.tf and began gathering other modules and planning infrastructure layout.
+* Realized that the module syntax for properties (e.g. id) wasn't the same as standard Terraform. Spent more time reading through the individual module references.
+* Wrote config for a VPC to hold everything. 1 public subnet and 3 private subnets (1 for the EC2 instance, 2 for the DB instance across multiple AZ).
+* Ran **`terraform plan`** and **`terraform apply`**. No problems.
+* Continued to expand config, adding security groups, ingress/egress rules. Added ELB to the public subnet, created listeners on port 80, attached to EC2 instance.
+* Ran **`terraform plan/apply`** again. No major issues.
+* Added DB module to code. Had trouble configuring it for postgres (the default example was mysql). Succeeded after some Googling + trial and error.
+* Noticed security groups were missing egress rules. Fixed that.
+* Ran **`terraform plan/apply`** again. No further issues.
+#### **THE CODE IS STILL NOT FINISHED**.  
+It lacks the CloudWatch/SNS chain to notify admins of ELB health alerts. Planning to implement that as raw Terraform code instead of a module, because the module syntax looked more obtuse than I wanted to deal with. Also, the security groups have no port restrictions (except for the ELB). They **are** configured to block traffic that isn't from the correct source, however (as requested in the readme). I just don't know which ports to close.
+
+#### **Futher Considerations**
+I'm wondering if it might be better to create IAM roles and assign them to the instances instead of creating security groups to filter traffic. If I use IAM roles, I could still access the instances myself if needed while also restricting traffic to the required sources. Something to consider?
