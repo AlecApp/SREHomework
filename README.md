@@ -15,10 +15,10 @@ This repo contains the modified todo-api Dockerfile, the modified docker-compose
 
 ### Process for docker-compose.yml
 * Ran docker-compose.yml through yaml linter to check for basic syntax errors like extra whitespace.
-* Ran `docker-compose up`, expecting errors. Got error message about named volume in service "db" not being declared in volumes. Researched error via Google.
-* Looked at file. Reasoned that "db/postgres" was probably a typo of "db:/postgres". Hard to know without being more familiar with Postgres and what's supposed to happen here.
-* Added "db/postres-init.sql:" in volumes anyway. Expected this to not work. Was correct, got regex error.
-* Made edits: Changed "db/postgres-init.sql:" to "db:/postgres-init.sql/" and added **db:** to volumes. Since this is two changes and the readme said there were two bugs, I'm moving forward under the assumption that I've found them. Waiting for further errors to confirm/deny.
+* Ran `docker-compose up`, expecting errors. Got error message about named volume in service "**db**" not being declared in volumes. Researched error via Google.
+* Looked at file. Reasoned that "**db/postgres**" was probably a typo of "**db:/postgres**". Hard to know without being more familiar with Postgres and what's supposed to happen here.
+* Added "**db/postres-init.sql:**" in volumes anyway. Expected this to not work. Was correct, got regex error.
+* Made edits: Changed "**db/postgres-init.sql:**" to "**db:/postgres-init.sql/**" and added **db:** to volumes. Since this is two changes and the readme said there were two bugs, I'm moving forward under the assumption that I've found them. Waiting for further errors to confirm/deny.
 * Ran `docker-compose up` again. Image built successfully. However, encountered port binding error. **Port 0.0.0.0:80 already in use.**
 * Downloaded netstat tools, determined that apache was starting at launch and binding to that port. Stopped apache.
 * Ran `docker-compose up` again. Image built successfully. However, todo-api kept spitting out an error message: 
