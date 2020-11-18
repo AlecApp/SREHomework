@@ -51,6 +51,6 @@ It lacks the CloudWatch/SNS chain to notify admins of ELB health alerts. Plannin
 I'm wondering if it might be better to create IAM roles instead of creating security groups to filter traffic. If I use IAM roles, I could still access the instances myself if needed while also restricting traffic to the required sources. Something to consider?
 
 ## Current State of Project  
-The Dockerfile seems to be ready.
-The docker-compose.yml is returning errors that may or may not be related to it.
-The Terraform config is 90% done. It lacks polishing and the CloudWatch/SNS hooks.
+The Dockerfile seems to be ready.  
+The docker-compose.yml is returning errors that may or may not be related to it.  
+The Terraform config is 90% done. It lacks polishing and the CloudWatch/SNS hooks. Also needs a final, clean test run.
