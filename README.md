@@ -1,5 +1,5 @@
 # SREHomework
-Contains the modified todo-api Dockerfile, the modified docker-compose.yml, and the Terraform files.
+This repo contains the modified todo-api Dockerfile, the modified docker-compose.yml, and the Terraform files.
 
 ##### General note: Encountered several problems with my dev environment. Spent a couple hours partitioning extra HDD space, installing CLI tools, etc.
 
