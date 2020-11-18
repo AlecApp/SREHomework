@@ -28,7 +28,7 @@ This repo contains the modified todo-api Dockerfile, the modified docker-compose
 * Connected to 127.0.0.1 via Chrome just to see if this error could be ignored. Site came up, but its functions didn't work.
 * Since I'm now uncertain whether this error is related to my local Docker setup, a mistake in the todo-api Dockerfile, or some mistake in the docker-compose.yml, I'm putting this on hold and moving on to the Terraform files while I wait for assistance.
 
-**Side Note: While building the images this warning appeared:**
+Side Note: While building the images this warning appeared:
 **karma-jasmine-html-reporter@1.5.4 has incorrect peer dependency "jasmine-core@>=3.5"**
 I'm noting it here just in case it becomes relevant to future problems.
 
