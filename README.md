@@ -44,7 +44,7 @@ This repo contains the modified todo-api Dockerfile, the modified docker-compose
 * Added DB module to code. Had trouble configuring it for postgres (the default example was mysql). Succeeded after some Googling + trial and error.
 * Noticed security groups were missing egress rules. Fixed that.
 * Ran **`terraform plan/apply`** again. No further issues.
-#### **THE CODE IS STILL NOT FINISHED**.  
+* #### **THE CODE IS STILL NOT FINISHED**.  
 It lacks the CloudWatch/SNS chain to notify admins of ELB health alerts. Planning to implement that as raw Terraform code instead of a module, because the module syntax looked more obtuse than I wanted to deal with. Also, the security groups have no port restrictions (except for the ELB). They **are** configured to block traffic that isn't from the correct source, however (as requested in the readme). I just don't know which ports to close.
 
 #### **Futher Considerations**
