@@ -17,14 +17,14 @@ This repo contains the modified todo-api Dockerfile, the modified docker-compose
 * Ran docker-compose.yml through yaml linter to check for basic syntax errors like extra whitespace.
 * Ran `docker-compose up`, expecting errors. Got error message about named volume in service "**db**" not being declared in volumes. Researched error via Google.
 * Looked at file. Reasoned that "**db/postgres**" was probably a typo of "**db:/postgres**". Hard to know without being more familiar with Postgres and what's supposed to happen here.
-* Added "**db/postres-init.sql:**" in volumes anyway. Expected this to not work. Was correct, got regex error.
-* Made edits: Changed "**db/postgres-init.sql:**" to "**db:/postgres-init.sql/**" and added **db:** to volumes. Since this is two changes and the readme said there were two bugs, I'm moving forward under the assumption that I've found them. Waiting for further errors to confirm/deny.
+* Added "**`db/postres-init.sql:`**" in volumes anyway. Expected this to not work. Was correct, got regex error.
+* Made edits: Changed "**`db/postgres-init.sql:`**" to "**`db:/postgres-init.sql/`**" and added **`db:`** to volumes. Since this is two changes and the readme said there were two bugs, I'm moving forward under the assumption that I've found them. Waiting for further errors to confirm/deny.
 * Ran `docker-compose up` again. Images built successfully. However, encountered port binding error. **Port 0.0.0.0:80 already in use.**
 * Downloaded netstat tools, determined that apache was starting at launch and binding to that port. Stopped apache.
 * Ran `docker-compose up` again. Images built successfully. However, errors encountered when running. The console kept spitting out an error from api_1 when starting the NEST application: **ERROR: connect ECONNREFUSED 0.0.0.0:5432**
 * After spitting out the same error dozens of times, **sre_homework_api_1 exited with code 1**.
 * Researched error. Research suggested it was due to the database (5432 is Postgres' port) not being properly linked to the api. Research also suggested the error was related to running multiple Docker containers on the same system.
-* Looked at file again. Reasoned that "**`postgres-init.sql/docker-entrypoint-initdb.d/postgres-init.sql`**" might possibly be a distortion of "**`/docker-entrypoint-initdb.d/postgres-init.sql`**" on the basis of "postgres-init.sql" being repeated twice, and it seemed odd that the file would be in a directory with an identical name.
+* Looked at file again. Reasoned that **`postgres-init.sql/docker-entrypoint-initdb.d/postgres-init.sql`** might possibly be a distortion of **`/docker-entrypoint-initdb.d/postgres-init.sql`** on the basis of "postgres-init.sql" being repeated twice, and it seemed odd that the file would be in a directory with an identical name.
 * Made the change suggested above. Ran `docker-compose up` again. No change, same **ECONNREFUSED** error.
 * Connected to 127.0.0.1 via Chrome just to see if this error could be ignored. Site came up, but its functions didn't work.
 * Since I'm now uncertain whether this error is related to my local Docker setup, a mistake in the todo-api Dockerfile, or some mistake in the docker-compose.yml, I'm putting this on hold and moving on to the Terraform files while I wait for assistance.
