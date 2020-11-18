@@ -21,8 +21,7 @@ This repo contains the modified todo-api Dockerfile, the modified docker-compose
 * Made edits: Changed "**db/postgres-init.sql:**" to "**db:/postgres-init.sql/**" and added **db:** to volumes. Since this is two changes and the readme said there were two bugs, I'm moving forward under the assumption that I've found them. Waiting for further errors to confirm/deny.
 * Ran `docker-compose up` again. Image built successfully. However, encountered port binding error. **Port 0.0.0.0:80 already in use.**
 * Downloaded netstat tools, determined that apache was starting at launch and binding to that port. Stopped apache.
-* Ran `docker-compose up` again. Image built successfully. However, todo-api kept spitting out an error message: 
-* However, errors encountered when running. The console kept spitting out an error from api_1 when starting the NEST application: **ERROR: connect ECONNREFUSED 0.0.0.0:5432**
+* Ran `docker-compose up` again. Image built successfully. However, errors encountered when running. The console kept spitting out an error from api_1 when starting the NEST application: **ERROR: connect ECONNREFUSED 0.0.0.0:5432**
 * Researched error. Research suggested it was due to the database (5432 is Postgres' port) not being properly linked to the api.
 * Looked at file again. Reasoned that "`postgres-init.sql/docker-entrypoint-initdb.d/postgres-init.sql`" might possibly be a distortion of "`/docker-entrypoint-initdb.d/postgres-init.sql`" on the basis of "postgres-init.sql" being repeated twice, and it seemed odd that the file would be in a directory with an identical name.
 * Made the change suggested above. Ran `docker-compose up` again. No change, same **ECONNREFUSED** error.
