@@ -183,6 +183,7 @@ module "db" {
 	engine_version = "9.6.9"
 	instance_class = "db.t2.micro"
 	allocated_storage = 5
+	#Setting encryption to false for now.
 	storage_encrypted = false
 	
 	name = "homeworkdb"
@@ -208,6 +209,7 @@ module "db" {
 
 	subnet_ids = [module.vpc.private_subnets[1], module.vpc.private_subnets[2]]
 	
+	#Initially attempted to use a later version of postgres. Couldn't get that version to work, so I fell back on 9.6
 	family = "postgres9.6"
 	
 	major_engine_version = "9.6"
