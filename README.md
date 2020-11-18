@@ -3,6 +3,8 @@ This repo contains the modified todo-api Dockerfile, the modified docker-compose
 
 ##### General note: Encountered several problems with my dev environment. Spent a couple hours partitioning extra HDD space, installing CLI tools, etc.
 
+##### General note 2: This readme is wordier than usual, since I'm not just covering the practical stuff but also my rational and failures.
+
 ### Process for todo-api Dockerfile
 * Built todo-api image to see initial filesize and watch how everything built. Image size: 1.21gb
 * Read https://docs.docker.com/develop/develop-images/multistage-build/ and other resources
