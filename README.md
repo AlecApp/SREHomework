@@ -47,7 +47,7 @@ This repo contains the modified todo-api Dockerfile, the modified docker-compose
 * Noticed security groups were missing egress rules. Fixed that.
 * Ran **`terraform plan/apply`** again. No further issues.
 #### **THE TERRAFORM CODE IS STILL NOT FINISHED**.  
-It lacks the CloudWatch/SNS chain to notify admins of ELB health alerts. Planning to implement that as raw Terraform code instead of a module, because the module syntax looked more obtuse than I wanted to deal with. It also lacks variable abstraction (except for my AWS account keys, of course) and logging. Finally, the security groups have no port restrictions (except for the ELB). They **are** configured to block traffic that isn't from the correct source, however (as requested in the readme). I just don't know which ports to close.
+It lacks the CloudWatch/SNS chain to notify admins of ELB health alerts. Planning to implement that next. It also lacks variable abstraction (except for my AWS account keys, of course) and logging. Finally, the security groups have no port restrictions (except for the ELB). They **are** configured to block traffic that isn't from the correct source, however (as requested in the readme). I just don't know which ports to close for the internal connections.
 
 #### **Futher Considerations**
 I'm wondering if it might be better to create IAM roles instead of creating security groups to filter traffic. If I use IAM roles, I could still access the instances myself if needed while also restricting traffic to the required sources. Something to consider?
