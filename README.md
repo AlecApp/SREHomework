@@ -44,8 +44,13 @@ This repo contains the modified todo-api Dockerfile, the modified docker-compose
 * Added DB module to code. Had trouble configuring it for postgres (the default example was mysql). Succeeded after some Googling + trial and error.
 * Noticed security groups were missing egress rules. Fixed that.
 * Ran **`terraform plan/apply`** again. No further issues.
-* #### **THE CODE IS STILL NOT FINISHED**.  
-It lacks the CloudWatch/SNS chain to notify admins of ELB health alerts. Planning to implement that as raw Terraform code instead of a module, because the module syntax looked more obtuse than I wanted to deal with. Also, the security groups have no port restrictions (except for the ELB). They **are** configured to block traffic that isn't from the correct source, however (as requested in the readme). I just don't know which ports to close.
+#### **THE TERRAFORM CODE IS STILL NOT FINISHED**.  
+It lacks the CloudWatch/SNS chain to notify admins of ELB health alerts. Planning to implement that as raw Terraform code instead of a module, because the module syntax looked more obtuse than I wanted to deal with. It also lacks variable abstraction (except for my AWS account keys, of course). Finally, the security groups have no port restrictions (except for the ELB). They **are** configured to block traffic that isn't from the correct source, however (as requested in the readme). I just don't know which ports to close.
 
 #### **Futher Considerations**
-I'm wondering if it might be better to create IAM roles and assign them to the instances instead of creating security groups to filter traffic. If I use IAM roles, I could still access the instances myself if needed while also restricting traffic to the required sources. Something to consider?
+I'm wondering if it might be better to create IAM roles instead of creating security groups to filter traffic. If I use IAM roles, I could still access the instances myself if needed while also restricting traffic to the required sources. Something to consider?
+
+## Current State of Project  
+The Dockerfile seems to be ready.
+The docker-compose.yml is returning errors that may or may not be related to it.
+The Terraform config is 90% done. It lacks polishing and the CloudWatch/SNS hooks.
