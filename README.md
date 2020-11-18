@@ -55,4 +55,4 @@ I'm wondering if it might be better to create IAM roles instead of creating secu
 ## Current State of Project  
 The Dockerfile seems to be ready.  
 The docker-compose.yml is returning errors that may or may not be related to it.
-The Terraform config is 90% done. It lacks polishing and the CloudWatch/SNS hooks. Also needs a final, clean test run.
+The Terraform config is 90% done. It lacks polishing (name standardization, etc.) and the CloudWatch/SNS hooks. Also needs a final, clean test run.
