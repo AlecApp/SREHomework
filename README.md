@@ -25,7 +25,7 @@ This repo contains the modified todo-api Dockerfile, the modified docker-compose
 * After spitting out the same error dozens of times, **sre_homework_api_1 exited with code 1**.
 * Researched error. Research suggested it was due to the database (5432 is Postgres' port) not being properly linked to the api. Research also suggested the error was related to running multiple Docker containers on the same system.
 * Looked at file again. Reasoned that **`postgres-init.sql/docker-entrypoint-initdb.d/postgres-init.sql`** might possibly be a distortion of **`/docker-entrypoint-initdb.d/postgres-init.sql`** on the basis of "postgres-init.sql" being repeated twice, and it seemed odd that the file would be in a directory with an identical name.
-* Also noted that there was no POSTGRES_USER field to go with the POSTGRES_PASSWORD field. Made mental note that this might be a problem.
+* Also noted that there was no POSTGRES_USER field to go with the POSTGRES_PASSWORD field. Noted that this might be a problem.
 * Made the change suggested above. Ran `docker-compose up` again. No change, same **ECONNREFUSED** error.
 * Connected to 127.0.0.1 via Chrome just to see if this error could be ignored. Site came up, but its functions didn't work.
 * Since I'm now uncertain whether this error is related to my local Docker setup, a mistake in the todo-api Dockerfile, or some mistake in the docker-compose.yml, I'm putting this on hold and moving on to the Terraform files while I wait for assistance.
