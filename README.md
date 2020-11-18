@@ -15,7 +15,7 @@ This repo contains the modified todo-api Dockerfile, the modified docker-compose
 
 ### Process for docker-compose.yml
 * Ran docker-compose.yml through yaml linter to check for basic syntax errors like extra whitespace.
-* Ran `docker-compose up`, expecting errors. Got error message about named volume in service "db" not being declared in volumes. Researched error via Google.
+* Ran `docker-compose up`, expecting errors. Got error message about named volume in service "db" not being declared in volumes. Researched error.
 * Looked at file. Reasoned that **`db/postgres`** was probably a typo of **`db:/postgres`**. Hard to know without being more familiar with Postgres and what's supposed to happen here.
 * Added **`db/postres-init.sql:`** in **`volumes:`** anyway. Expected this to not work. Was correct, got regex error.
 * Made edits: Changed **`db/postgres-init.sql:`** to **`db:/postgres-init.sql/`** and added **`db:`** to volumes. Since this is two changes and the readme said there were two bugs, I'm moving forward under the assumption that I've found them. Waiting for further errors to confirm/deny.
@@ -52,5 +52,5 @@ I'm wondering if it might be better to create IAM roles instead of creating secu
 
 ## Current State of Project  
 The Dockerfile seems to be ready.  
-The docker-compose.yml is returning errors that may or may not be related to it.  
+The docker-compose.yml is returning errors that may or may not be related to it.
 The Terraform config is 90% done. It lacks polishing and the CloudWatch/SNS hooks. Also needs a final, clean test run.
