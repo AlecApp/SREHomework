@@ -4,21 +4,21 @@ This repo contains the modified todo-api Dockerfile, the modified docker-compose
 ##### General note: Encountered several problems with my dev environment. Spent a couple hours partitioning extra HDD space, installing CLI tools, etc.
 
 ### Process for todo-api Dockerfile
-* Built todo-api image to see initial filesize and watch how everything built. **Built image size: 1.21gb**
+* Built todo-api image to see initial filesize and watch how everything built. **Image size: 1.21gb**
 * Read https://docs.docker.com/develop/develop-images/multistage-build/ and other resources
 * Being unfamiliar with npm, reviewed npm docs and looked at package.json to better understand what the Dockerfile is actually doing.
 * Noticed that the base image was node:12 instead of node:12-alpine, which is smaller.
-* Attempted to split build process into stages, copying only the necessary dependencies from each stage instead of the full image. **Built image size: 1.13gb**
+* Attempted to split build process into stages, copying only the necessary dependencies from each stage instead of the full image. **Image size: 1.13gb**
 * Reasoned that either I wasn't seeing a way to further break down the build process or the base image was too large.
-* Switched image to node:12-alpine. **Built image size: 300MB**. Assumed that was the correct answer. Hard to know without testing.
+* Switched image to node:12-alpine. **Image size: 300MB**. Assumed that was the correct answer. Hard to know without testing.
 * Remembered after the fact that I could use the todo-client's Dockerfile as an example, checked it out and found that alpine WAS being used. So, I guess my answer was correct.
 
 ### Process for docker-compose.yml
 * Ran docker-compose.yml through yaml linter to check for basic syntax errors like extra whitespace.
 * Ran `docker-compose up`, expecting errors. Got error message about named volume in service "db" not being declared in volumes. Researched error via Google.
-* Looked at file. Reasoned that "db/postgres" was probably a typo of "db:/postgres". Hard to know without being more familiar with Postgres and what's supposed to happen here.
-* Added `db/postres-init.sql:` in volumes anyway. Expected this to not work. Was correct, got regex error.
-* Made edits: Changed `db/postgres-init.sql:` to `db:/postgres-init.sql/` and added `db:` to volumes. Since this is two changes and the readme said there were two bugs, I'm assuming I have found them. Waiting for further errors to confirm/deny.
+* Looked at file. Reasoned that **db/postgres** was probably a typo of **db:/postgres**. Hard to know without being more familiar with Postgres and what's supposed to happen here.
+* Added **db/postres-init.sql:** in volumes anyway. Expected this to not work. Was correct, got regex error.
+* Made edits: Changed **db/postgres-init.sql:** to **db:/postgres-init.sql/** and added **db:** to volumes. Since this is two changes and the readme said there were two bugs, I'm assuming I have found them. Waiting for further errors to confirm/deny.
 * Ran `docker-compose up` again. Image built successfully. However, encountered port binding error. **Port 0.0.0.0:80 already in use.**
 * Downloaded netstat tools, determined that apache was starting at launch and binding to that port. Stopped apache.
 * Ran `docker-compose up` again. Image built successfully. However, todo-api kept spitting out an error message: 
