@@ -6,7 +6,7 @@ services:
     image: postgres:10.7-alpine
     volumes:
       - db-data:/var/lib/postgresql/data
-      - "db:/docker-entrypoint-initdb.d/postgres-init.sql"
+      - ".db/docker-entrypoint-initdb.d/postgres-init.sql"
     ports:
       - "5432:5432"
     networks:
@@ -38,7 +38,8 @@ services:
       - backend
     depends_on:
       - db
-    #environment:
+    environment:
+      DB_HOST_NAME: db
     restart: always
 
 networks:
@@ -47,4 +48,3 @@ networks:
       
 volumes:
   db-data:
-  db:
