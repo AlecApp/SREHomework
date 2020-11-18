@@ -31,5 +31,5 @@ This repo contains the modified todo-api Dockerfile, the modified docker-compose
 ### Process for Terraform
 * Decided to use modules to be more professional. Found a lot on GitHub: https://github.com/terraform-aws-modules
 * Mistakenly cloned a module repo to local system, thinking I needed the source. Quickly learned that wasn't how it worked.
-* Took ten minutes to researched modules on Terraform's site, gaining familiarity.
+* Took ten minutes to research modules on Terraform's site, gaining familiarity.
 * Successfully imported vpc module into a fresh config.tf and began gathering other modules and planning infrastructure layout.
