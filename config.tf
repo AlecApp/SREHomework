@@ -133,7 +133,7 @@ module "elb" {
 	]
 
 	health_check = {
-		target = "HTTP:80/"
+		target = "TCP:22"
 		interval = 30
 		healthy_threshold = 2
 		unhealthy_threshold = 2
