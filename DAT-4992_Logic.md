@@ -9,7 +9,7 @@
 
 ### My Solution:
 1. Modify the main Compose .yml so that it [A] Defaults to pulling the staging image and [B] lets Devs define an image to pull.
-> This is accomplished by changing `image: ` to accept a variable. This variable must be passed like a shell variable (i.e. before the command). There's no way to pass the variable to the command as an option/parameter.
+> This is accomplished by changing `image: ` to accept a variable. This variable must be passed on the command line (e.g. `KEY=VALUE docker-compose up`). There's no way to pass the variable to the command as an option/parameter.
 2. Modify the main Compose .yml to remove the `build: .` statement, to stop the (now unnecessary) building and potential errors.
 3. Create a second .yml file, an override file that contains only the `build: .` statement and the local image name `image: liquibase-hub`.
 > This will be merged over the main file (using `-f`) to reinsert the original local build logic if desired.
