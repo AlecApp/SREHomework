@@ -19,7 +19,7 @@
 I looked into using a .env file to set environment variables like the image tag. But the problem with that is as follows:
 1. It doesn't reduce file count. We still need to add a new file (either the .env or the override .yml)
 2. It doesn't solve the problem of re-adding the `build: .` command, etc. to allow devs to continue building locally.
-3. It would require manually editing the tag variable whenever a dev wanted a different image. And the point of this pull is to get AWAY from manual edits.
+3. It would require manually editing the tag variable whenever a dev wanted a different image. And the point of this ticket is to get AWAY from manual edits.
 
 ### OTHER Other Things:
 An .env file would still be a great addition for 1 reason: Currently, our COMPOSE_PROJECT_NAME is undefined. So, it defaults to the directory name: liquibase-hub.
